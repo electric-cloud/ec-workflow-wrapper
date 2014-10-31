@@ -1,17 +1,19 @@
 OVERVIEW:
 
-The "WorkflowWrapper" plugin provides a procedure that launches and monitors a workflow.  This is used to create schedules or continuous integration triggers that launch workflows.
+The "WorkflowWrapper" ElectricCommander/ElectricFlow plugin provides a procedure that launches and monitors a workflow.
 
 USAGE:
 
-You must first install and promote the plugin.  When you are creating a schedule or continuous integration trigger to launch a workflow, select the WorkflowWrapper plugin as the project and WorkflowWrapper as the procedure.  You are prompted for the following parameters:
+You must first install and promote the plugin (available in out/WorkflowWrapper.jar).  When you are creating a schedule or continuous integration trigger to launch a workflow, select the WorkflowWrapper plugin as the project and WorkflowWrapper as the procedure.  You are prompted for the following parameters:
 - definition_name: Name of the workflow definition being launched.
 - definition_parameters: Parameters to starting state specified in the format passed to an ec-perl runWorkflow call. Required parameters to the starting state must be specified or the workflow won't be launched. For example:
+```
     {actualParameterName => "branch", value => "main"},
     {actualParameterName => "revision", value => 12345},
+```
 - definition_project_name: Name of the project containing the workflow definition being launched.
 - definition_starting_state: Name of the starting state for the workflow definition being launched.
-- job_name: Name of the wrapper job; defaults to "workflow_wrapper_$[jobId]_$[/timestamp]" if unspecified.
+- job_name: Name of the wrapper job; defaults to `workflow_wrapper_$[jobId]_$[/timestamp]` if unspecified.
 
 Once your schedule or CI trigger fires, it creates a job that does the following:
 - Launches the workflow by calling the runWorkflow API.
@@ -34,6 +36,6 @@ AUTHOR:
 Tanay Nagjee, Electric Cloud Solutions Engineer
 tanay@electric-cloud.com
 
-LEGAL:
+DISCLAIMER:
 
-This module is not officially supported by Electric Cloud. It has undergone no formal testing and you may run into issues that have not been uncovered in the limited manual testing done so far. Electric Cloud should not be held liable for any repercussions of using this software.
+This module is not officially supported by Electric Cloud.
