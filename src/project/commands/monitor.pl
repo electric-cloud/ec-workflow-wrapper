@@ -16,10 +16,11 @@ my $completed = 0;
 my $lastDetails = "";
 my $lastOutcome = "";
 my $lastActiveState = "";
+my $expanded;
 
 do {
     my $json = JSON->new->allow_nonref;
-    my $expanded = expandWorkflow($project, $workflow);
+    $expanded = expandWorkflow($project, $workflow);
     my $details = $json->pretty->canonical->encode($expanded);
 
     # Only bother setting the details property if it's changed.
@@ -49,6 +50,15 @@ do {
         sleep $interval;
     }
 } while (!$completed);
+
+my $finalState = $expanded->{"activeState"};
+if ($finalState eq "Fail"
+    || $finalState eq "Failed"
+    || $finalState eq "Error"
+    || $finalState eq "Rejected") {
+    print "The workflow is considered to hvae failed because it ended in $finalState\n";
+    exit 1;
+}
 
 # Helper method to extract the value of a property.
 

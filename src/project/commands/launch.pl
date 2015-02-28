@@ -12,7 +12,7 @@ my $start = getPropertyValue("/myParent/definition_starting_state");
 my $parameters_raw = getPropertyValue("/myParent/definition_parameters");
 my $parameters = eval('[' . $parameters_raw . ']');
 
-$ec->setProperty("/myJob/ec_job_progress_status", "Launching workflow...");
+$ec->setProperty("/myJob/ec_job_progress_status", "Launching pipeline...");
 
 my $result = $ec->runWorkflow({
     projectName => $project,
@@ -28,7 +28,7 @@ $ec->setProperty(
     "/projects/$project/workflows/$name/report-urls/Wrapper",
     "/commander/link/jobDetails/jobs/$[jobId]");
 $ec->setProperty("/myJob/ec_job_description",
-    "<html><div style='padding:5px'><a target='_blank' href='$link'>View workflow</a></div></html>");
+    "<html><div style='padding:5px'><a target='_blank' href='$link'>View pipeline</a></div></html>");
 
 # Helper method to extract the value of a property.
 
