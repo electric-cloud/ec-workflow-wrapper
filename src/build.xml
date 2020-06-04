@@ -1,8 +1,0 @@
-<project name="WorkflowWrapper" default="package" basedir=".">
-  <description>Build the WorkflowWrapper plugin</description>
-  <property name="pluginKey" value="WorkflowWrapper" />
-  <property name="pluginVersion" value="1.2.0" />
-  <property name="gwt.path.extras" value="extras" />
-
-  <import file="${SDKROOT}/build/buildTargets.xml" />
-</project>

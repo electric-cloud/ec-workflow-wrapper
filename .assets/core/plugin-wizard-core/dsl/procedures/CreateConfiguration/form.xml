@@ -1,0 +1,41 @@
+<!--
+
+     Copyright 2016 Electric Cloud, Inc.
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+
+-->
+<editor>
+    <formElement>
+        <type>entry</type>
+        <label>Configuration:</label>
+        <property>config</property>
+        <required>1</required>
+        <documentation>Unique name for the plugin configuration.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Description:</label>
+        <property>desc</property>
+        <required>0</required>
+        <documentation>Description for the plugin configuration.</documentation>
+    </formElement>
+    <formElement>
+        <type>credential</type>
+        <label>Credential:</label>
+        <property>credential</property>
+        <required>1</required>
+        <documentation>Credentials to connect</documentation>
+        <attachedAsParameterToStep>createAndAttachCredential</attachedAsParameterToStep>
+    </formElement>
+</editor>

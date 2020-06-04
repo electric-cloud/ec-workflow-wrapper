@@ -1,0 +1,233 @@
+=head1 NAME
+
+FlowPDF::Log
+
+=head1 AUTHOR
+
+CloudBees
+
+=head1 DESCRIPTION
+
+This class provides logging functionality for FlowPDF.
+
+=head1 CAVEATS
+
+This package is being loaded at the beginning of FlowPDF execution behind the scene.
+
+It is required to set up logging before other components are initialized.
+
+Logger is retrieving through run context current debug level from configuration.
+
+To enable this mechanics you need to add B<debugLevel> property to your configuration.
+
+It will be automatically read and logger would already have this debug level.
+
+Supported debug levels:
+
+=over 4
+
+=item B<INFO>
+
+Provides standard output. This is default level.
+
+debugLevel property should be set to 0.
+
+=item B<DEBUG>
+
+Provides the same output from INFO level + debug output.
+
+debugLevel property should be set to 1.
+
+=item B<TRACE>
+
+Provides the same output from DEBUG level + TRACE output.
+
+debugLevel property should be set to 2.
+
+=back
+
+=head1 SYNOPSIS
+
+To import FlowPDF::Log:
+
+
+
+    use FlowPDF::Log
+
+
+
+=head1 METHODS
+
+This package imports following functions on load into current scope:
+
+
+=head2 logInfo(@messages)
+
+=head3 Description
+
+Logs an info message. Output is the same as from print function.
+
+=head3 Parameters
+
+=over 4
+
+=item (List of String) Log messages
+
+=back
+
+=head3 Returns
+
+=over
+
+=item (Boolean) 1
+
+=back
+
+=head3 Usage
+
+
+
+    logInfo("This is an info message");
+
+
+
+=head2 logDebug(@messages)
+
+=head3 Description
+
+Logs a debug message.
+
+=head3 Parameters
+
+=over 4
+
+=item (List of String) Log messages
+
+=back
+
+=head3 Returns
+
+=over
+
+=item (Boolean) 1
+
+=back
+
+=head3 Usage
+
+
+
+    # this will print [DEBUG] This is a debug message.
+    # but only if debug level is enough (DEBUG or more).
+    logDebug("This is a debug message");
+
+
+
+=head2 logTrace(@messages)
+
+=head3 Description
+
+Logs a trace message
+
+=head3 Parameters
+
+=over 4
+
+=item (List of String) Log messages
+
+=back
+
+=head3 Returns
+
+=over
+
+=item (Boolean) 1
+
+=back
+
+=head3 Usage
+
+
+
+    # this will print [TRACE] This is a trace message.
+    # but only if debug level is enough (TRACE or more).
+    logTrace("This is a debug message");
+
+
+
+=head2 logWarning(@messages)
+
+=head3 Description
+
+Logs a warning message.
+
+=head3 Parameters
+
+=over 4
+
+=item (List of String) Log messages
+
+=back
+
+=head3 Returns
+
+=over
+
+=item (Boolean) 1
+
+=back
+
+=head3 Usage
+
+
+    # this will print [WARNING] This is a warning message for any debug level:
+    logWarning("This is a warning message");
+
+
+=head2 logError(@messages)
+
+=head3 Description
+
+Logs an error message
+
+=head3 Parameters
+
+=over 4
+
+=item (List of String) Log messages
+
+=back
+
+=head3 Returns
+
+=over
+
+=item (Boolean) 1
+
+=back
+
+=head3 Usage
+
+
+
+    # this will print [ERROR] This is an error message for any debug level:
+    logError("This is an error message");
+
+
+
+=head2 logInfoDiag
+
+This function works exactly as logInfo, but adds additional markups into log. Then this info will be displayed at Diagnostic tab of a job.
+
+=head2 logWarningDiag
+
+This function works exactly as logWarning, but adds additional markups into log. Then this warning will be displayed at Diagnostic tab of a job.
+
+=head2 logErrorDiag
+
+This function works exactly as logError, but adds additional markups into log. Then this error will be displayed at Diagnostic tab of a job.
+
+
+
+
+=cut

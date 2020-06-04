@@ -1,0 +1,80 @@
+=head1 NAME
+
+FlowPDF::Component::EF::Reporting::Metadata
+
+=head1 AUTHOR
+
+CloudBees
+
+=head1 DESCRIPTION
+
+A metadata object for FlowPDF::Component::EF::Reporting system.
+
+=head1 METHODS
+
+
+=head2 getValue()
+
+=head3 Descripton
+
+Returns decoded metadata value.
+
+=head3 Parameters
+
+=head3 Returns
+
+=head3 Exceptions
+
+=head3 Usage
+
+
+=head2 getUniqueKey()
+
+=head3 Descripton
+
+Returns unique key for current metadata object.
+
+=head3 Parameters
+
+=head3 Returns
+
+=head3 Exceptions
+
+=head3 Usage
+
+
+
+=head2 getReportObjectTypes()
+
+=head3 Descripton
+
+Returns report object types for current metadata object.
+
+=head3 Parameters
+
+=head3 Returns
+
+=head3 Exceptions
+
+=head3 Usage
+
+
+=head2 getPropertyPath()
+
+=head3 Descripton
+
+Returns property path where metadata is stored or is to be stored.
+
+=head3 Parameters
+
+=head3 Returns
+
+=head3 Exceptions
+
+=head3 Usage
+
+
+
+
+
+=cut

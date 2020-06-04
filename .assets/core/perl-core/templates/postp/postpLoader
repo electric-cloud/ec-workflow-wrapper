@@ -1,0 +1,1 @@
+ec-perl -MElectricCommander -MElectricCommander::PropMod -e "ElectricCommander::PropMod::loadPerlCodeFromProperty(ElectricCommander->new(), '/projects/@PLUGIN_KEY@-@PLUGIN_VERSION@/perl/core/lib/FlowPDF/EF/PostP.pm');FlowPDF::EF::PostP->run(\@ARGV)";

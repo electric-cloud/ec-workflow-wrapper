@@ -1,0 +1,229 @@
+=head1 NAME
+
+FlowPDF::Component::EF::Reporting::Payloadset
+
+=head1 AUTHOR
+
+CloudBees
+
+=head1 DESCRIPTION
+
+A payloadset object.
+
+=head1 METHODS
+
+
+=head2 getReportObjectTypes()
+
+=head3 Description
+
+Returns an array reference of string report object types for current set of payloads
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (ARRAY ref) Report object types
+
+=back
+
+=head3 Exceptions
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Usage
+
+
+
+    my $reportObjectTypes = $payloadSet->getReportObjectTypes();
+
+
+
+
+=head2 getPayloads()
+
+=head3 Description
+
+Returns an array references to the payloads.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (ARRAY ref) of L<FlowPDF::Component::EF::Reporting::Payload>
+
+=back
+
+=head3 Exceptions
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Usage
+
+
+
+    my $payloads = $payloadset->getPayloads();
+
+
+
+=head2 newPayload($params)
+
+=head3 Description
+
+Creates a new payload and adds it to current payload set and returns a reference for it.
+
+=head3 Parameters
+
+A hash reference with following fields
+
+=over 4
+
+=item (Required)(String) reportObjectType: a report object type for the current payload
+
+=item (Optional)(HASH ref) values: a values that will be send to the Devops Insight Center. An actual payload.
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (L<FlowPDF::Component::EF::Reporting::Payload>) A reference to newly created payload.
+
+=back
+
+=head3 Exceptions
+
+=over 4
+
+=item Fatal error if required fields are missing.
+
+=back
+
+=head3 Usage
+
+
+
+    my $payload = $payloadSet->newPayload({
+        reportObjectType => 'build',
+        values => {
+            buildNumber => '2',
+            status => 'success',
+        }
+    });
+
+
+
+=head2 newPayload($params)
+
+=head3 Description
+
+Returns an array reference of string report object types for current set of payloads
+
+=head3 Parameters
+
+A hash reference with following fields
+
+=over 4
+
+=item (Required)(String) reportObjectType: a report object type for the current payload
+
+=item (Optional)(HASH ref) values: a values that will be send to the Devops Insight Center. An actual payload.
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (L<FlowPDF::Component::EF::Reporting::Payload>) A reference to newly created payload.
+
+=back
+
+=head3 Exceptions
+
+=over 4
+
+=item Fatal error if required fields are missing.
+
+=back
+
+=head3 Usage
+
+
+
+    my $payload = $payloadSet->newPayload({
+        reportObjectType => 'build',
+        values => {
+            buildNumber => '2',
+            status => 'success',
+        }
+    });
+
+
+
+=head2 getLastPayload()
+
+=head3 Description
+
+Returns the last payload from current Payloadset.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (L<FlowPDF::Component::EF::Reporting::Payload>) A reference to the last payload.
+
+=back
+
+=head3 Exceptions
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Usage
+
+
+
+    my $lastPayload = $payloadSet->getLastPayload();
+
+
+
+
+
+=cut

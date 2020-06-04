@@ -1,0 +1,322 @@
+=head1 NAME
+
+FlowPDF::StepResult
+
+=head1 AUTHOR
+
+CloudBees
+
+=head1 DESCRIPTION
+
+This class sets various output results of step run in pipeline of procedure context.
+
+=head1 METHODS
+
+=head2 setJobStepOutcome($jobStepOutcome)
+
+=head3 Description
+
+Schedules setting of a job step outcome. Could be warning, success or an error.
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(String) desired procedure/task outcome. Could be one of: warning, success, error.
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (FlowPDF::StepResult) self
+
+=back
+
+=head3 Usage
+
+
+
+    $stepResult->setJobStepOutcome('warning');
+
+
+
+=head2 setPipelineSummary($pipelineSummaryName, $pipelineSummaryText)
+
+=head3 Description
+
+Sets the summary of the current pipeline task.
+
+Summaries of pipelien tasks are available on pipeline stage execution result under the "Summary" link.
+
+Following code will set pipeline summary with name 'Procedure Exectuion Result:' to 'All tests are ok'
+
+=head3 Parameters
+
+=over
+
+=item (Required)(String) Pipeline Summary Property Text
+
+=item (Required)(String) Pipeline Summary Value.
+
+=back
+
+=head3 Returns
+
+=over
+
+=item (FlowPDF::StepResult) self
+
+=back
+
+=head3 Usage
+
+
+
+    $stepResult->setPipelineSummary('Procedure Execution Result:', 'All tests are ok');
+
+
+
+=head2 setJobStepSummary($jobStepSummary)
+
+=head3 Description
+
+Sets the summary of the current B<job step>.
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(String) Job Step Summary
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (FlowPDF::StepResult) self
+
+=back
+
+=head3 Usage
+
+
+
+    $stepResult->setJobStepSummary('All tests are ok in this step.');
+
+
+
+=head2 setJobSummary($jobSummary)
+
+=head3 Description
+
+Sets the summary of the current B<job>.
+
+=head3 Parameters
+
+=over 4
+
+=item (Requried)(String) Job Summary
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (FlowPDF::StepResult) self
+
+=back
+
+=head3 Usage
+
+
+
+    $stepResult->setJobSummary('All tests are ok');
+
+
+
+=head2 setOutcomeProperty($propertyPath, $propertyValue)
+
+=head3 Description
+
+Sets the outcome property.
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(String) Property Path
+
+=item (Required)(String) Value of property to be set
+
+=back
+
+=head3 Returns
+
+=over
+
+=item (FlowPDF::StepResult) self
+
+=back
+
+
+
+    $stepResult->setOutcomeProperty('/myJob/buildNumber', '42');
+
+
+
+=head2 setOutputParameter($parameterName, $parameterValue)
+
+=head3 Description
+
+Sets an output parameter for a job.
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(String) Output parameter name
+
+=item (Required)(String) Output parameter value
+
+=back
+
+=head3 Returns
+
+=over
+
+=item (FlowPDF::StepResult) self
+
+=back
+
+
+
+    $stepResult->setOutputParameter('Last Build Number', '42');
+
+
+
+=head2 setReportUrl($reportName, $reportUrl)
+
+=head3 Description
+
+Sets a report and it's URL for the job.
+If it is being invoked in pipeline runs, sets also a property with a link to the pipeline summary.
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(String) Report name
+
+=item (Required)(String) Report URL
+
+=back
+
+=head3 Returns
+
+=over
+
+=item (FlowPDF::StepResult) self
+
+=back
+
+
+
+    $stepResult->setReportUrl('Build Link #42', 'http://localhost:8080/job/HelloWorld/42');
+
+
+
+=head2 apply()
+
+=head3 Description
+
+Applies scheduled changes without schedule cleanup in queue order: first scheduled, first executed.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (FlowPDF::StepResult) self
+
+=back
+
+
+
+    $stepResult->apply();
+
+
+
+=head2 flush()
+
+=head3 Description
+
+Flushes scheduled actions.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (FlowPDF::StepResult) self
+
+=back
+
+=head3 Usage
+
+
+
+    $stepResult->flush();
+
+
+
+=head2 applyAndFlush
+
+=head3 Description
+
+Executes the schedule queue and flushes it then.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (FlowPDF::StepResult) self
+
+=back
+
+=head3 Usage
+
+
+
+    $stepResult->applyAndFlush();
+
+
+
+
+
+=cut

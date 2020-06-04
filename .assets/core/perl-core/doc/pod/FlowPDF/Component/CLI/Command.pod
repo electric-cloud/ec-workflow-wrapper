@@ -1,0 +1,99 @@
+=head1 NAME
+
+FlowPDF::Component::CLI::Command
+
+=head1 AUTHOR
+
+CloudBees
+
+=head1 DESCRIPTION
+
+This class represents a system command that is being used by L<FlowPDF::Component::CLI>.
+
+=head1 METHODS
+
+=head2 new($shell, @args)
+
+=head3 Description
+
+This method returns an FlowPDF::Component::CLI::Command object.
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(String) Command to be executed
+
+=item (Optional)(list of Strings) Arguments to be added to the command.
+
+=back
+
+=head3 Returns
+
+=head3 Usage
+
+
+
+    my $command = FlowPDF::Component::CLI::Command->new('ls', '-la');
+
+
+
+=head3 Note
+
+It is much better to use newCommand metod from L<FlowPDF::Component::CLI>
+
+=head2 addArguments(@args)
+
+=head3 Description
+
+Adds a new arguments to the command.
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(list of String) arguments to be added
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item FlowPDF::Component::CLI::Command self
+
+=back
+
+=head3 Usage
+
+
+
+    my $command = FlowPDF::Component::CLI->newCommand('ls');
+    $command->addArguments('-l', '-a');
+
+
+=head2 renderCommand()
+
+=head3 Description
+
+Returns a rendered command with its arguments.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (String) Rendered command.
+
+=back
+
+
+
+=cut

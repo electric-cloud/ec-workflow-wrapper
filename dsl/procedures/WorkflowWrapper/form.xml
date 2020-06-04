@@ -1,0 +1,44 @@
+<!--
+    This form is generated automatically from the parameters pluginspec.
+    Please not not edit this file manually as it will be regenerated.
+-->
+<editor>
+  <help>/commander/pages/@PLUGIN_NAME@/help?s=Administration&amp;ss=Plugins#WorkflowWrapper</help>
+  <formElement>
+    <type>entry</type>
+    <property>definition_name</property>
+    <required>1</required>
+    <documentation>Name of the workflow definition being launched.</documentation>
+    <label>Definition Path:</label>
+  </formElement>
+  <formElement>
+    <type>textarea</type>
+    <property>definition_parameters</property>
+    <required>0</required>
+    <documentation>Parameters to starting state specified in the format passed to an ec-perl runWorkflow call.  Required parameters to the starting state must be specified or the workflow won't be launched.  Example:
+{actualParameterName =&gt; "branch", value =&gt; "main"}, {actualParameterName =&gt; "revision", value =&gt; 12345},
+</documentation>
+    <label>Definition Parameters:</label>
+  </formElement>
+  <formElement>
+    <type>entry</type>
+    <property>definition_project_name</property>
+    <required>1</required>
+    <documentation>Name of the project containing the workflow definition being launched.</documentation>
+    <label>Definition Project Name:</label>
+  </formElement>
+  <formElement>
+    <type>entry</type>
+    <property>definition_starting_state</property>
+    <required>1</required>
+    <documentation>Name of the starting state for the workflow definition being launched.</documentation>
+    <label>Definition Starting State:</label>
+  </formElement>
+  <formElement>
+    <type>entry</type>
+    <property>job_name</property>
+    <required>0</required>
+    <documentation>Name of the wrapper job; defaults to "workflow_wrapper_$[jobId]_$[/timestamp]" if unspecified.</documentation>
+    <label>Job Name:</label>
+  </formElement>
+</editor>

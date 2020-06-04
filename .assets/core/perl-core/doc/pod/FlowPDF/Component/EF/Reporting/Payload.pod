@@ -1,0 +1,125 @@
+=head1 NAME
+
+FlowPDF::Component::EF::Reporting::Payload
+
+=head1 AUTHOR
+
+CloudBees
+
+=head1 DESCRIPTION
+
+A payload object.
+
+=head1 METHODS
+
+=head2 getReportObjectType()
+
+=head3 Description
+
+Returns a report object type for current payload.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (String) Report object type for current payload
+
+=back
+
+=head3 Exceptions
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Usage
+
+
+
+    my $reportObhectType = $payload->getReportObjectType();
+
+
+
+
+
+=head2 getValues()
+
+=head3 Description
+
+Returns a values that will be sent for the current payload.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (HASH ref) A values for the current payload to be sent.
+
+=back
+
+=head3 Usage
+
+
+
+    my $values = $payload->getValues();
+
+
+
+=head2 getDependentPayloads()
+
+=head3 Note
+
+B<This method still experimental>
+
+=head3 Description
+
+This method returns a dependent payloads for the current payload.
+
+This method may be used when there is more than one report object type should be send in the context of a single payload.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (ARRAY ref of FlowPDF::Component::EF::Reporting::Payload)
+
+=back
+
+=head3 Exceptions
+
+=head3 Usage
+
+
+
+    my $payloads = $payload->getDependentPayloads();
+
+
+
+
+
+=cut

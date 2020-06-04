@@ -1,0 +1,108 @@
+=head1 NAME
+
+FlowPDF::Component::OAuth;
+
+=head1 AUTHOR
+
+CloudBees
+
+=head1 DESCRIPTION
+
+A component to integrate with OAuth 1.0
+
+=head1 INIT PARAMS
+
+To read more about init params see L<FlowPDF::ComponentManager>.
+
+This component support following init params:
+
+=over 4
+
+=item (Required) base_url
+
+=item (Required) oauth_consumer_key
+
+=item (Required) oauth_signature_method
+
+=item (Required) oauth_version
+
+=item (Optional) oauth_nonce
+
+=item (Optional) oauth_timestamp
+
+=item (Optional) oauth_version
+
+=item (Optional) request_method
+
+=item (Optional) oauth_token
+
+=item (Optional) oauth_verifier
+
+=item (Optional) oauth_callback
+
+=item (Optional) oauth_signature
+
+=back
+
+
+=head1 USAGE
+
+
+
+    my $rest = FlowPDF::Client::REST->new({
+        oauth => {
+            private_key=> $privateKey,
+            oauth_token => $token,
+            oauth_consumer_key => $oauthConsumerKey,
+            oauth_version => '1.0'
+        }
+    });
+    my $jiraUrl = 'http://jira:8080';
+    # rest client will automatically load FlowPDF::Component::OAuth. You just need to get it.
+    my $oauth = FlowPDF::ComponentManager->getComponent('FlowPDF::Component::OAuth');
+    # create a hash reference request params, using oauth component
+    my $requestParams = $oauth->augment_params_with_oauth('GET', $jiraUrl, {});
+    # add these parameters to the request URL.
+    $jiraUrl = $rest->augmentUrlWithParams($jiraUrl, $requestParams);
+    # create request
+    my $request = $rest->newRequest(GET => $jiraUrl);
+    my $response = $rest->doRequest($request);
+
+
+
+=over
+
+=item B<new>
+
+=item B<request>
+
+=item B<augment_params_with_oauth>
+
+=item B<calculate_the_signature>
+
+Collect all parameters for signature string:
+  - Request method
+  - Request path
+  - All parameters that will be in query (collect and encode all at once)
+
+=item B<parse_token_response>
+
+=item B<request_token>
+
+=item B<authorize_token>
+
+=item B<generate_auth_url>
+
+=item B<renew_nonce>
+
+=item B<_encode>
+
+=item B<_parse_url_encoded>
+
+=item B<ua>
+
+=back
+
+
+
+=cut

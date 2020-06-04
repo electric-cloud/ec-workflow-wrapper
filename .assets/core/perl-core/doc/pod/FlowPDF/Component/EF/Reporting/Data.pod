@@ -1,0 +1,208 @@
+=head1 NAME
+
+FlowPDF::Component::EF::Reporting::Data
+
+=head1 AUTHOR
+
+CloudBees
+
+=head1 DESCRIPTION
+
+A data object.
+
+=head1 METHODS
+
+=head2 getReportObjectType()
+
+=head3 Description
+
+Returns a report object type for current data.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (String) Report object type for current data.
+
+=back
+
+=head3 Exceptions
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Usage
+
+
+
+    my $reportObhectType = $data->getReportObjectType();
+
+
+
+
+
+=head2 getValues()
+
+=head3 Description
+
+Returns a values for the current data.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (HASH ref) A values for the current data.
+
+=back
+
+=head3 Usage
+
+
+
+    my $values = $data->getValues();
+
+
+
+
+=head2 addOrUpdateValue
+
+=head3 Description
+
+Adds or updates a value for the current data object.
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(String) Key for the data.
+
+=item (Required)(String) Value for the data.
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item Reference to the current FlowPDF::Component::EF::Reporting::Data
+
+=back
+
+=head3 Exceptions
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Usage
+
+
+
+    $data->addOrUpdateValue('key', 'value')
+
+
+
+=head2 addValue
+
+=head3 Description
+
+Adds a new value to the data values, falls with exceptions if provided key already exists.
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(String) Key for the data.
+
+=item (Required)(String) Value for the data.
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item Reference to the current FlowPDF::Component::EF::Reporting::Data
+
+=back
+
+=head3 Exceptions
+
+=over 4
+
+=item Fatal error if field already exists.
+
+=back
+
+=head3 Usage
+
+
+
+    $data->addValue('key', 'value')
+
+
+
+=head2 updateValue
+
+=head3 Description
+
+Updates a value for current data values. Fatal error if value does not exist.
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(String) Key for the data.
+
+=item (Required)(String) Value for the data.
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item Reference to the current FlowPDF::Component::EF::Reporting::Data
+
+=back
+
+=head3 Exceptions
+
+=over 4
+
+=item Fatal exception if value does not exist.
+
+=back
+
+=head3 Usage
+
+
+
+    $data->updateValue('key', 'value')
+
+
+
+
+
+=cut

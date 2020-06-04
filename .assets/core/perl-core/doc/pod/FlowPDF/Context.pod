@@ -1,0 +1,310 @@
+=head1 NAME
+
+FlowPDF::Context
+
+=head1 AUTHOR
+
+CloudBees
+
+=head1 DESCRIPTION
+
+FlowPDF::Context is a class that represents current running context.
+
+This class allows user to access procedure parameters, config values and define a step result.
+
+=head1 METHODS
+
+=head2 bailOut($params)
+
+=head3 Description
+
+An advanced version of bailOut from L<FlowPDF::Helpers>::bailOut.
+This version has connections with CloudBees Flow and has following benefits:
+
+=over 4
+
+=item Sets a Pipeline Summary.
+
+=item Sets a JobStep Summary.
+
+=item Sets outcome to Error.
+
+=item Adds diagnostic messages to Diagnostic tab of the job.
+
+=item Add suggestion if provided.
+
+=back
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(HASH ref) A hash reference with message and suggestion fields. Message is mandatory, suggestion is optional
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Exceptions
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Usage
+
+This function is being used through context object. Also, note, that this function created it's own L<FlowPDF::StepResult> object.
+It means, that if this function is being used, no other L<FlowPDF::StepResult> objects will be auto-applied.
+
+This function uses bailOut function from L<FlowPDF::Helpers> package and causes an exception,
+ that could not be handled and your step will exit immedieately with code 1.
+
+
+
+# this function will call an exit 1.
+$context->bailOut({
+    message    => "File not found",
+    suggestion => 'Please, check that you are using correct resource.'
+});
+
+
+
+=head2 getRuntimeParameters()
+
+=head3 Description
+
+A simplified accessor for the step parameters and config values.
+This function returns a regular perl HASH ref from  parameters and config values.
+
+Credentials from 'credential' parameter will be present in this hashref as 'user' and password.
+Credentials, that have name like 'proxy_credential' will be mapped to 'proxy_user' and 'proxy_password' parameters.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (HASH ref) A merged parameters from step parameters and config values.
+
+=back
+
+=head3 Usage
+
+For example, you have 'query' parameter and 'location' parameter in your procedure form.xml.
+In your configuration you have 'credential', 'proxy_credential', 'contentType' and 'userAgent'.
+In that case you can get runtime parameters like:
+
+
+
+    my $simpleParams = $context->getRuntimeParameters();
+
+
+
+Now, $simpleParams is:
+
+
+
+    {
+        # Values from config
+        user => 'admin',
+        password => '12345',
+        proxy_user => 'proxy',
+        proxy_password => 'qwerty',
+        contentType => 'application/json',
+        userAgent => 'Mozilla',
+        # values from step parameters
+        location => 'California',
+        query => 'SELECT * FROM commander.plugins'
+    }
+
+
+
+=head2 getStepParameters()
+
+=head3 Description
+
+Returns a L<FlowPDF::StepParameters> object to be used as accessor for current step parameters.
+This method does not require parameters.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (L<FlowPDF::StepParameters>) Parameters for the current step
+
+=back
+
+=head3 Usage
+
+
+
+    my $params = $context->getStepParameters();
+    # this method returns a L<FlowPDF::Parameter> object, or undef, if no parameter with that name has been found.
+    my $param = $params->getParameter('myStepParameter');
+    if ($param) {
+        print "Param value is:", $param->getValue(), "\n";
+    }
+
+
+
+=head2 getConfigValues()
+
+=head3 Description
+
+This method returns a L<FlowPDF::Config> object that represents plugin configuration. This method does not require parameters.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (L<FlowPDF::Config>) Plugin configuration for current run context
+
+=back
+
+=head3 Usage
+
+
+
+    my $configValues = $context->getConfigValues();
+    my $cred = $configValues->getParameter('credential');
+    if ($cred) {
+        print "Secret value is: ", $cred->getSecretValue(), "\n";
+    }
+
+
+
+=head2 newStepResult()
+
+=head3 Description
+
+This method returns an L<FlowPDF::StepResult> object, which is being used to work with procedure or pipeline stage output.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item (L<FlowPDF::StepResult>) Object for manipulation with pipeline/procedure results.
+
+=back
+
+=head3 Usage
+
+
+
+    my $stepResult = $context->newStepResult();
+    ...;
+    $stepResult->apply();
+
+
+
+=head2 newRESTClient($creationParams)
+
+=head3 Description
+
+Creates an L<FlowPDF::Client::REST> object, applying components and other useful mechanisms to it during creation.
+
+For now, this method supports following components and tools:
+
+=over 4
+
+=item L<FlowPDF::Component::Proxy>
+
+Proxy can be automatically be enabled. To do that you need to make sure that following parameters are present in your configuration:
+
+=over 8
+
+=item credential with the proxy_credential name.
+
+=item regular parameter with httpProxyUrl name
+
+=back
+
+If your configuration has all fields above, proxy component will be applied silently,
+and you can be sure, that all requests that you're doing through L<FlowPDF::Client::REST> methods already have proxy enabled.
+
+Also, note that if you have debugLevel parameter in your configuration, and it will be set to debug,
+debug mode for FlowPDF::ComponentProxy will be enabled by default.
+
+=item Basic Authorization
+
+Basic authorization can be automatically applied to all your rest requests. To do that you need to make sure that following parameters are present in your plugin configuration:
+
+=over 8
+
+=item authScheme parameter has value "basic"
+
+=item credential with the basic_credential name
+
+=back
+
+=back
+
+=head3 Parameters
+
+=over 4
+
+=item (Optional) (HASHREF) FlowPDF::Client::REST Object creation params.
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item L<FlowPDF::Client::REST>
+
+=back
+
+=head3 Usage
+
+
+
+    my $rest = $context->newRestClient();
+    my $req = $rest->newRequest(GET => 'https://electric-cloud.com');
+    my $response = $rest->doRequest($req);
+    print $response->decoded_content();
+
+
+
+
+
+=cut

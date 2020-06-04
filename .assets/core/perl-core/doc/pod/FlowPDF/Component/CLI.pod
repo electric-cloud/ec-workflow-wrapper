@@ -1,0 +1,99 @@
+=head1 NAME
+
+=head1 FlowPDF::Component::CLI
+
+=head1 AUTHOR
+
+CloudBees
+
+=head1 DESCRIPTION
+
+FlowPDF::Component::CLI is an FlowPDF::Component that is responsible for command-line execution.
+
+=head1 INIT PARAMS
+
+To read more about init params see L<FlowPDF::ComponentManager>.
+
+This component support following init params:
+
+=over 4
+
+=item (Required) workingDirectory
+
+A parameter for working directory. CLI executor will chdir to this directory before commands execution.
+
+=item (Optional) resultsDirectory
+
+A parameter for output directory. Logs are being stored at this directory.
+
+If no resultsDirectory parameter, defaults to workingDirectory parameter.
+
+=back
+
+=head1 USAGE
+
+This component should be used in the following sequence:
+
+=over 4
+
+=item FlowPDF::Component::CLI creation.
+
+=item FlowPDF::Component::CLI command creation.
+
+=item Command execution.
+
+=item Results procession.
+
+=back
+
+=head1 METHODS
+
+=head2 newCommand($shell, $args)
+
+=head3 Description
+
+Creates an L<FlowPDF::Componen::CLI::Command> object that represents command line and being used by FlowPDF::Component::CLI executor.
+
+=head3 Parameters
+
+=over 4
+
+=item (Required)(String) Shell for the command, or full path to the command that should be executed.
+
+=item (Required)(ARRAY ref) An arguments that will be escaped and added to the command.
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item L<FlowPDF::Component::CLI::Command> object
+
+=back
+
+=head2 runCommand()
+
+=head3 Description
+
+Executes provided command and returns an L<FlowPDF::Component::CLI::ExecutionResult> object.
+
+=head3 Parameters
+
+=over 4
+
+=item None
+
+=back
+
+=head3 Returns
+
+=over 4
+
+=item L<FlowPDF::Component::CLI::ExecutionResult>
+
+=back
+
+
+
+=cut
