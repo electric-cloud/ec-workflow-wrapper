@@ -1,10 +1,10 @@
 OVERVIEW:
 
-The "WorkflowWrapper" ElectricCommander/ElectricFlow plugin provides a procedure that launches and monitors a workflow.
+The "WorkflowWrapper" CloudBees CD plugin provides a procedure that launches and monitors a workflow.
 
 USAGE:
 
-You must first install and promote the plugin (available in out/WorkflowWrapper.jar).  When you are creating a schedule or continuous integration trigger to launch a workflow, select the WorkflowWrapper plugin as the project and WorkflowWrapper as the procedure.  You are prompted for the following parameters:
+You must first install and promote the plugin (available as a release).  When you are creating a schedule or continuous integration trigger to launch a workflow, select the WorkflowWrapper plugin as the project and WorkflowWrapper as the procedure.  You are prompted for the following parameters:
 - definition_name: Name of the workflow definition being launched.
 - definition_parameters: Parameters to starting state specified in the format passed to an ec-perl runWorkflow call. Required parameters to the starting state must be specified or the workflow won't be launched. For example:
 ```
@@ -29,13 +29,16 @@ Once your schedule or CI trigger fires, it creates a job that does the following
 
 SOURCES:
 
-The sources are available in the src directory. They were built using the Commander SDK v2.0. The documentation for the SDK is available at http://docs.electric-cloud.com.
+The sources are available in the src directory. They were built using CloudBees [FlowPDF](https://github.com/electric-cloud-community/flowpdf)
 
-AUTHOR:
+AUTHORS:
 
-Tanay Nagjee, Electric Cloud Solutions Engineer
-tanay@electric-cloud.com
+Tanay Nagjee, former Electric Cloud Solutions Engineer
+
+Updated to FlowPDF by
+Greg Maxey, CloudBees Solution Architect
+gmaxey@cloudbees.com
 
 DISCLAIMER:
 
-This module is not officially supported by Electric Cloud.
+This module is not officially supported by CloudBees.
