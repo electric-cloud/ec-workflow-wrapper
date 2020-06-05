@@ -2,10 +2,9 @@
 <plugin>
   <key>WorkflowWrapper</key>
   <label>WorkflowWrapper</label>
-  <author>Tanay Nagjee (FlowPDF by Greg Maxey)</author>
+  <author>Tanay Nagjee</author>
   <category>Utility</category>
   <description>Provides a procedure that launches and monitors a workflow</description>
-  <configure>ec_config</configure>
   <version>2.0.0</version>
   <authorUrl>https://support.cloudbees.com/</authorUrl>
   <help>help.xml</help>

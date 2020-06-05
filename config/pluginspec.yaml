@@ -2,7 +2,7 @@ pluginInfo:
   pluginName: 'WorkflowWrapper'
   version: '2.0.0'
   description: 'Provides a procedure that launches and monitors a workflow'
-  author: 'Tanay Nagjee (FlowPDF by Greg Maxey)'
+  author: 'Tanay Nagjee'
   supportUrl: 'https://support.cloudbees.com/'
   category: 'Utility'
 
@@ -13,27 +13,17 @@ procedures:
   hasConfig: false
   parameters:
   -
-    name: definition_name
-    documentation: Name of the workflow definition being launched.
-    required: true
-    type: entry
-    label: Definition Path
-  -
-    name: definition_parameters
-    documentation: >
-      Parameters to starting state specified in the format passed to an ec-perl runWorkflow call.  Required parameters to the starting state must be specified or the workflow won't be launched.  Example:
-
-      {actualParameterName => "branch", value => "main"},
-      {actualParameterName => "revision", value => 12345},
-    required: false
-    type: textarea
-    label: Definition Parameters
-  -
     name: definition_project_name
     documentation: Name of the project containing the workflow definition being launched.
     required: true
     type: entry
     label: Definition Project Name
+  -
+    name: definition_name
+    documentation: Name of the workflow definition being launched.
+    required: true
+    type: entry
+    label: Definition Path
   -
     name: definition_starting_state
     documentation: Name of the starting state for the workflow definition being launched.
@@ -41,8 +31,20 @@ procedures:
     type: entry
     label: Definition Starting State
   -
+    name: definition_parameters
+    htmlDocumentation: >
+     Parameters to starting state specified in the format passed to an ec-perl runWorkflow call. Required parameters to the starting state must be specified or the workflow won't be launched. Example:<br /><br />
+     {actualParameterName =&gt; "branch", value =&gt; "main"},<br />
+     {actualParameterName =&gt; "revision", value =&gt; 12345}
+    required: false
+    type: textarea
+    label: Definition Parameters
+  -
     name: job_name
-    documentation: Name of the wrapper job; defaults to "workflow_wrapper_$[jobId]_$[/timestamp]" if unspecified.
+    htmlDocumentation: >
+     Name of the wrapper job; defaults to<br/>
+     "workflow_wrapper_$[jobId]_$[/timestamp]"<br/>
+     if unspecified.
     required: false
     type: entry
     label: Job Name
